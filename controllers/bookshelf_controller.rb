@@ -38,13 +38,20 @@ class BookShelfController < Sinatra::Base
 
   get "/new" do
 
+    @books = Bookshelf.new
     erb :new_book
 
   end
 
-  post ("/create") do
-  # save_book(params["title"], params["content"])
-  "successful"
+  post ("/") do
+
+    book = Bookshelf.new
+    book.title = params[:title]
+    book.author = params[:author]
+    book.save
+
+    redirect "/books"
+
   end
 
 
@@ -62,6 +69,8 @@ class BookShelfController < Sinatra::Base
   get ("/:title") do
 
     "book title is #{params[:title]}"
+
+    redirect "/new_book"
 
   end
 

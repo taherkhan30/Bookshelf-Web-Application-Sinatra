@@ -28,19 +28,19 @@ class Bookshelf
 
   end
 #
-#   def self.find (id)
-#       connection = self.open_connection
-#
-#       sql = "SELECT * FROM post WHERE id = #{id} LIMIT 1"
-#
-#       posts = connection.exec(sql)
-#
-#       post = self.hydrate(posts[0])
-#
-#       post
-#
-#
-#   end
+  def self.find (id)
+      connection = self.open_connection
+
+      sql = "SELECT * FROM bookshelf WHERE id = #{id} LIMIT 1"
+
+      book_title = connection.exec(sql)
+
+      book_title = self.hydrate(posts[0])
+
+      book_title
+
+
+  end
 #
 #
 #
@@ -55,25 +55,27 @@ class Bookshelf
 
   end
 #
-# def save
-#
-#   connection = Post.open_connection
-#
-#   if (!self.id)
-#     sql = "INSERT INTO post (title, body) VALUES ('#{self.title}', '#{self.body}')"
-#   else
-#     sql = "UPDATE post SET title='#{self.title}', body='#{self.body}' WHERE id = #{self.id}"
-#   end
-#
-#   connection.exec(sql)
-#
-# end
+  def save
+
+    connection = Bookshelf.open_connection
+
+    if (!self.id)
+      sql = "INSERT INTO book_titles (title, author) VALUES ('#{self.title}', '#{self.author}')"
+    else
+      sql = "UPDATE book_titles SET title='#{self.title}', author='#{self.author}' WHERE id = #{self.id}"
+    end
+
+    connection.exec(sql)
+
+  end
 #
 # def self.destroy
 #
 #   connection = self.open_connection
 #
 #   sql = "DELETE FROM post WHERE id = #{id}"
+
+  # connection.exec(sql)
 #
 # end
 #
