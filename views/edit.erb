@@ -1,20 +1,4 @@
-<h1>Edit Book</h1>
 
-<form action="/<%= @books.id %>" method="post">
-  <div>
-    <label>Title</label>
-    <input type="text" name="title" placeholder="Enter a Title" value="<%= @books.title %>">
-  </div>
-  <div>
-    <label>Author</label>
-    <textarea name="author" placeholder="author name"> <%= @books.author %> </textarea>
-  </div>
-  <div>
-    <input type="submit" value="Add new book">
-  </div>
-  <% if (@books.id) %>
-  <input type="hidden" name="_method" value="put">
-  <% end %>
-</form>
+<h1>Edit Book Details</h1>
 
-<a href="/">Home page</a>
+<%= erb :'partials/form',:layout =>false %>

@@ -14,7 +14,7 @@ class Bookshelf
   def self.all
     connection = self.open_connection
 
-    sql = "SELECT id, title, author FROM book_titles ORDER BY id"
+    sql = "SELECT id, title, author FROM book_titles ORDER BY id DESC"
 
     results = connection.exec(sql)
 
@@ -31,13 +31,13 @@ class Bookshelf
   def self.find (id)
       connection = self.open_connection
 
-      sql = "SELECT * FROM bookshelf WHERE id = #{id} LIMIT 1"
+      sql = "SELECT * FROM book_titles WHERE id = #{id} LIMIT 1"
 
-      book_title = connection.exec(sql)
+      books = connection.exec(sql)
 
-      book_title = self.hydrate(posts[0])
+      book = self.hydrate(books[0])
 
-      book_title
+      book
 
 
   end
@@ -68,19 +68,15 @@ class Bookshelf
     connection.exec(sql)
 
   end
-#
-# def self.destroy
-#
-#   connection = self.open_connection
-#
-#   sql = "DELETE FROM post WHERE id = #{id}"
 
-  # connection.exec(sql)
-#
-# end
-#
-# end
+  def self.destroy (id)
 
+    connection = self.open_connection
+
+    sql = "DELETE FROM book_titles WHERE id = #{id}"
+
+    connection.exec(sql)
+
+  end
 
 end
-# puts Post.all

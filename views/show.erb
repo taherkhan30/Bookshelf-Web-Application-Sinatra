@@ -1,3 +1,8 @@
-<h1><%= @title %></h1>
+<h1><%= @books.title %></h1>
+<p><%= @books.author %></p>
+<a href="/books/<%=  @books.id %>/edit">edit</a>
 
-<p><%= @content %></p>
+<form action="/books/<%= @books.id %>" method="post">
+  <input type="hidden" name="_method" value="delete">
+  <input type="submit" value="delete">
+</form>

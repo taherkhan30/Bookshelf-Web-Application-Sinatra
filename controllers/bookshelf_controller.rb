@@ -1,3 +1,4 @@
+
 class BookShelfController < Sinatra::Base
 
   puts File.join(File.dirname(__FILE__), '..')
@@ -15,18 +16,10 @@ class BookShelfController < Sinatra::Base
     register Sinatra::Reloader
   end
 
-#   get '/form' do
-#     erb :form
-#   end
-#
-#   post '/form' do
-#   "You said '#{params[:message]}'"
-# end
 
   get "/" do
 
   	   erb :index
-
   end
 
   get("/books") do
@@ -43,36 +36,64 @@ class BookShelfController < Sinatra::Base
 
   end
 
-  post ("/") do
+    post ("/") do
 
-    book = Bookshelf.new
-    book.title = params[:title]
-    book.author = params[:author]
-    book.save
+      book = Bookshelf.new
+      book.title = params[:title]
+      book.author = params[:author]
+      book.save
+
+      redirect "/books"
+
+    end
+
+
+
+    get '/books/:id' do
+        id = params[:id].to_i
+
+        @books = Bookshelf.find(id)
+
+        erb :show
+
+    end
+
+
+    get '/books/:id/edit' do
+
+      id = params[:id].to_i
+
+      @books = Bookshelf.find(id)
+
+      erb :edit
+
+    end
+
+    put '/books/:id' do
+
+      id = params[:id].to_i
+
+      book = Bookshelf.find(id)
+
+      book.title = params[:title]
+      book.author = params[:author]
+      book.save
+
+      redirect "/books"
+
+    end
+
+    delete '/books/:id' do
+
+    id = params[:id].to_i
+
+    Bookshelf.destroy(id)
 
     redirect "/books"
 
-  end
+    end
 
 
-  get ("/delete") do
-  "contain form to delete book off shelf"
-  end
-
-
-  post ("/update") do
-  "update the details of the book"
-  end
-
-
-
-  get ("/:title") do
-
-    "book title is #{params[:title]}"
-
-    redirect "/new_book"
-
-  end
 
 
 

@@ -16,12 +16,11 @@ INSERT INTO book_titles (title,author) VALUES ('book5', 'author 5');
 -------------------
 DROP TABLE IF EXISTS users;
 
-CREATE TABLE users (
+CREATE TABLE loans (
 
   id SERIAL PRIMARY KEY,
-  member_id INTEGER REFERENCES book_titles (id),
-  first_name VARCHAR(255),
-  last_name VARCHAR(255)
+  load_id INTEGER REFERENCES users (id),
+  book_id VARCHAR(255),
 
 );
 
