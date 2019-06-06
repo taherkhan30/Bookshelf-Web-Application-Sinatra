@@ -1,0 +1,18 @@
+<form action="/books/<%= @books.id %>" method="post">
+  <div class="title">
+    <label>Title</label>
+    <input type="text" name="title" placeholder="Enter a Title" value="<%= @books.title %>">
+  </div>
+  <div class ="author">
+    <label>Author</label>
+    <textarea name="author" placeholder="author name"> <%= @books.author %> </textarea>
+  </div>
+  <div>
+    <input type="submit" value="Save Book">
+  </div>
+  <% if (@books.id) %>
+  <input type="hidden" name="_method" value="put">
+  <% end %>
+</form>
+
+<a href="/">Home page</a>

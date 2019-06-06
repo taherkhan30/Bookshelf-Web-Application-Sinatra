@@ -1,0 +1,11 @@
+<h1>Book Titles</h1>
+<% @books.each do |books| %>
+<div>
+  <h3> <%= books.title %></h3>
+  <p><%= books.author %></p>
+  <!-- display here the user (borrower)
+  display here loan date
+   -->
+  <a href="/books/<%= books.id %>">more details</a>
+</div>
+<% end %>

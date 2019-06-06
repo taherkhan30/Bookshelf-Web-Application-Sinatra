@@ -1,0 +1,11 @@
+<h1>Loans</h1>
+<% @loans.each do |loans| %>
+<div>
+  <h3> <%= loans.load_id %></h3>
+  <p><%= loans.date_borrowed %></p>
+  <!-- display here the user (borrower)
+  display here loan date
+   -->
+     <a href="/books/<%= loans.id %>">more details</a>
+</div>
+<% end %>
